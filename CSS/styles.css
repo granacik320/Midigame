@@ -1,0 +1,17 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: 0;
+}
+body{
+    background: #00FFAB;
+}
+.game{
+    margin: auto;
+    margin-top: 80px;
+    background: #122e4e;
+    border-radius: 20px;
+    border: 9px solid white;
+    height: 720px;
+    width: 480px;
+}
