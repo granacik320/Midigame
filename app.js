@@ -2,6 +2,8 @@ const canvas = document.querySelector('canvas');
 const ctx = canvas.getContext('2d');
 var valueacords = 3;
 var acords = [];
+var speed = 2
+const req = update;
 
 for(let i = 0; i<valueacords; i++){
     var x = Math.floor(Math.random() * canvas.width - 20) + 10;
@@ -13,18 +15,42 @@ for(let i = 0; i<valueacords; i++){
     acords[i].drawacord();
 }
 
-player()
 
+update()
+function draw(){
+    ctx.clearRect(0, 0, canvas.width, canvas.height)
 
+    player()
+    for(let i = 0; i<valueacords; i++){
+        acords[i].drawacord();
+        acords[i].fall()
+        if(acords[i].y>590){
+            req = "s";
+        }
+    }
+}
+function update(){
+    draw()
+    requestAnimationFrame(req)
+}
+function s(){
+    console.log('s')
+    requestAnimationFrame(req)
+}
 
 function acord(x, y){
     this.x = x;
     this.y = y;
+    this.atan = Math.atan2(240 - this.x, 600 - this.y);
     this.drawacord = function(){
         ctx.fillStyle = "white";
         ctx.beginPath();
-        ctx.arc(this.x, this.y, 15, 0, 2 * Math.PI);
+        ctx.arc(this.x, this.y , 15, 0, 2 * Math.PI);
         ctx.fill();
+    }
+    this.fall = function(){
+        this.x +=Math.sin(this.atan) * speed
+        this.y +=Math.cos(this.atan) * speed
     }
 }
 
