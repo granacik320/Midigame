@@ -33,3 +33,11 @@ body{
     height: 720px;
     width: 480px;
 }
+.btnstart{
+    border: solid 1px white;
+    width: 150px;
+    height: 70px;
+    font-family: 'Montserrat';
+    font-size: 28px;
+    margin-left: 250px;
+}

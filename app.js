@@ -3,8 +3,11 @@ const ctx = canvas.getContext('2d');
 var valueacords = 6;
 var acords = [];
 var particles = [];
-var speed = 1.2;
+var speed = 2;
 var Rgama = ["C", "D", "E", "G", "A", "H"]
+let audioContext;
+let mic;
+let pitch;
 var keyboard = {
     C: 67,
     D: 68,
@@ -165,10 +168,8 @@ function clickaction(whenPressKey){
     }
 }
 
-draw()
-
-function draw(){
-    const req = requestAnimationFrame(draw)
+function bdraw(){
+    const req = requestAnimationFrame(bdraw)
     ctx.clearRect(0, 0, canvas.width, canvas.height)
     // ctx.fillStyle = "rgba(0, 0, 0, 0.1)"
     // ctx.rect(0, 0, canvas.width, canvas.height)
@@ -268,4 +269,30 @@ function player(){
     ctx.lineTo(210, 600);
     ctx.closePath();
     ctx.stroke();
+}
+
+async function setup() {
+  audioContext = new AudioContext();
+  stream = await navigator.mediaDevices.getUserMedia({ audio: true, video: false });
+  startPitch(stream, audioContext);
+}
+
+function startPitch(stream, audioContext) {
+  pitch = ml5.pitchDetection('./model/', audioContext , stream, modelLoaded);
+}
+
+function modelLoaded() {
+  console.log('Model Loaded');
+  getPitch();
+}
+
+function getPitch() {
+  pitch.getPitch(function(err, frequency) {
+    if (frequency) {
+      document.querySelector('#result').textContent = frequency;
+    } else {
+      document.querySelector('#result').textContent = 'NO SIGNAL';
+    }
+    getPitch();
+  })
 }
