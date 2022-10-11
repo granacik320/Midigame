@@ -37,133 +37,58 @@ for(let i = 0; i<valueacords; i++){
     console.log(acords[i].x)
 }
 
+function setparticle(){
+    for(let i = 0; i<valueacords; i++){
+        if(acords[i].gama == nuts){
+            acords.forEach(acord =>{
+                if(acord.gama == nuts){
+                    for(let i = 0; i<5; i++){
+                        particles.push(particles[i] = new particle(acord.x, acord.y,{
+                            x: Math.random() - 0.5,
+                            y: Math.random() - 0.5
+                        }))
+                    }
+                }
+            })
+            console.log(particles)
+            valueacords -= 1
+            acords.splice(i,1)
+            break;
+        }
+    }
+}
+
 //Keyboard click
 function clickaction(whenPressKey){
     switch(whenPressKey.keyCode){
         case keyboard.C:
-            for(let i = 0; i<valueacords; i++){
-                if(acords[i].gama == "C"){
-                    acords.forEach(acord =>{
-                        if(acord.gama == "C"){
-                            for(let i = 0; i<5; i++){
-                                particles.push(particles[i] = new particle(acord.x, acord.y,{
-                                    x: Math.random() - 0.5,
-                                    y: Math.random() - 0.5
-                                }))
-                            }
-                        }
-                    })
-                    console.log(particles)
-                    valueacords -= 1
-                    acords.splice(i,1)
-                    break;
-                }
-            }
+            nuts = "C"
+            setparticle(nuts)
         break;
 
         case keyboard.D:
-            for(let i = 0; i<valueacords; i++){
-                if(acords[i].gama == "D"){
-                    acords.forEach(acord =>{
-                        if(acord.gama == "D"){
-                            for(let i = 0; i<5; i++){
-                                particles.push(particles[i] = new particle(acord.x, acord.y,{
-                                    x: Math.random() - 0.5,
-                                    y: Math.random() - 0.5
-                                }))
-                            }
-                        }
-                    })
-                    console.log(particles)
-                    valueacords -= 1
-                    acords.splice(i,1)
-                    break;
-                }
-            }
+            nuts = "D"
+            setparticle(nuts)
         break;
 
         case keyboard.E:
-            for(let i = 0; i<valueacords; i++){
-                if(acords[i].gama == "E"){
-                    acords.forEach(acord =>{
-                        if(acord.gama == "E"){
-                            for(let i = 0; i<5; i++){
-                                particles.push(particles[i] = new particle(acord.x, acord.y,{
-                                    x: Math.random() - 0.5,
-                                    y: Math.random() - 0.5
-                                }))
-                            }
-                        }
-                    })
-                    console.log(particles)
-                    valueacords -= 1
-                    acords.splice(i,1)
-                    break;
-                }
-            }
+            nuts = "E"
+            setparticle(nuts)
         break;
 
         case keyboard.G:
-            for(let i = 0; i<valueacords; i++){
-                if(acords[i].gama == "G"){
-                    acords.forEach(acord =>{
-                        if(acord.gama == "G"){
-                            for(let i = 0; i<5; i++){
-                                particles.push(particles[i] = new particle(acord.x, acord.y,{
-                                    x: Math.random() - 0.5,
-                                    y: Math.random() - 0.5
-                                }))
-                            }
-                        }
-                    })
-                    console.log(particles)
-                    valueacords -= 1
-                    acords.splice(i,1)
-                    break;
-                }
-            }
+            nuts = "G"
+            setparticle(nuts)
         break;
 
         case keyboard.A:
-            for(let i = 0; i<valueacords; i++){
-                if(acords[i].gama == "A"){
-                    acords.forEach(acord =>{
-                        if(acord.gama == "A"){
-                            for(let i = 0; i<5; i++){
-                                particles.push(particles[i] = new particle(acord.x, acord.y,{
-                                    x: Math.random() - 0.5,
-                                    y: Math.random() - 0.5
-                                }))
-                            }
-                        }
-                    })
-                    console.log(particles)
-                    valueacords -= 1
-                    acords.splice(i,1)
-                    break;
-                }
-            }
+            nuts = "A"
+            setparticle(nuts)
         break;
 
         case keyboard.H:
-            for(let i = 0; i<valueacords; i++){
-                if(acords[i].gama == "H"){
-                    acords.forEach(acord =>{
-                        if(acord.gama == "H"){
-                            for(let i = 0; i<5; i++){
-                                particles.push(particles[i] = new particle(acord.x, acord.y,{
-                                    x: Math.random() - 0.5,
-                                    y: Math.random() - 0.5
-                                }))
-                            }
-                        }
-                    })
-                    console.log(particles)
-                    valueacords -= 1
-                    acords.splice(i,1)
-                    break;
-                }
-            }
+            nuts = "H"
+            setparticle(nuts)
         break;
     }
 }
@@ -171,9 +96,6 @@ function clickaction(whenPressKey){
 function bdraw(){
     const req = requestAnimationFrame(bdraw)
     ctx.clearRect(0, 0, canvas.width, canvas.height)
-    // ctx.fillStyle = "rgba(0, 0, 0, 0.1)"
-    // ctx.rect(0, 0, canvas.width, canvas.height)
-    // ctx.fill()
 
     particles.forEach(particle =>{
         particle.fall();
@@ -190,13 +112,8 @@ function bdraw(){
             gameover()
         }
     }
-
-    // //draw particles
-    // for(let i = 0; i<5; i++){
-    //     particles[i].drawparticles();
-    //     particles[i].fall()
-    // }
 }
+bdraw();
 
 //game lost
 function gameover(){
@@ -233,16 +150,17 @@ function acord(x, y, gama, acordspeed){
     }
 }
 
-function particle(x, y, velocity){
+function particle(x, y, velocity, width){
     this.x = x;
     this.y = y;
     this.velocity = velocity;
+    this.width = 5;
     this.atan = Math.atan2(this.x - this.x, this.y - this.y);
     //draw acord with symbol
     this.drawparticles = function(){
         ctx.fillStyle = "gray";
         ctx.beginPath();
-        ctx.arc(this.x, this.y , Math.floor(Math.random() * 5), 0, 2 * Math.PI);
+        ctx.arc(this.x, this.y , this.width, 0, 2 * Math.PI);
         ctx.fill();
     }
     //fall
@@ -269,30 +187,4 @@ function player(){
     ctx.lineTo(210, 600);
     ctx.closePath();
     ctx.stroke();
-}
-
-async function setup() {
-  audioContext = new AudioContext();
-  stream = await navigator.mediaDevices.getUserMedia({ audio: true, video: false });
-  startPitch(stream, audioContext);
-}
-
-function startPitch(stream, audioContext) {
-  pitch = ml5.pitchDetection('./model/', audioContext , stream, modelLoaded);
-}
-
-function modelLoaded() {
-  console.log('Model Loaded');
-  getPitch();
-}
-
-function getPitch() {
-  pitch.getPitch(function(err, frequency) {
-    if (frequency) {
-      document.querySelector('#result').textContent = frequency;
-    } else {
-      document.querySelector('#result').textContent = 'NO SIGNAL';
-    }
-    getPitch();
-  })
 }
