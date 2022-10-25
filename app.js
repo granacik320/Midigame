@@ -1,14 +1,14 @@
 const canvas = document.querySelector('canvas');
 const ctx = canvas.getContext('2d');
-var valueacords = 6;
-var acords = [];
-var particles = [];
-var speed = 2;
-var Rgama = ["C", "D", "E", "G", "A", "H"]
+let valueacords = 6;
+const acords = [];
+const particles = [];
+let speed = 2;
+const Rgama = ["C", "D", "E", "G", "A", "H"]
 let audioContext;
 let mic;
 let pitch;
-var keyboard = {
+const keyboard = {
     C: 67,
     D: 68,
     E: 69,
@@ -37,7 +37,9 @@ for(let i = 0; i<valueacords; i++){
     console.log(acords[i].x)
 }
 
-function setparticle(){
+//Keyboard click
+function clickaction(whenPressKey){
+    nuts = whenPressKey.key.toUpperCase()
     for(let i = 0; i<valueacords; i++){
         if(acords[i].gama == nuts){
             acords.forEach(acord =>{
@@ -55,41 +57,6 @@ function setparticle(){
             acords.splice(i,1)
             break;
         }
-    }
-}
-
-//Keyboard click
-function clickaction(whenPressKey){
-    switch(whenPressKey.keyCode){
-        case keyboard.C:
-            nuts = "C"
-            setparticle(nuts)
-        break;
-
-        case keyboard.D:
-            nuts = "D"
-            setparticle(nuts)
-        break;
-
-        case keyboard.E:
-            nuts = "E"
-            setparticle(nuts)
-        break;
-
-        case keyboard.G:
-            nuts = "G"
-            setparticle(nuts)
-        break;
-
-        case keyboard.A:
-            nuts = "A"
-            setparticle(nuts)
-        break;
-
-        case keyboard.H:
-            nuts = "H"
-            setparticle(nuts)
-        break;
     }
 }
 
@@ -112,6 +79,10 @@ function bdraw(){
             gameover()
         }
     }
+    if(acords.length === 0){
+        cancelAnimationFrame(req)
+        gg()
+    }
 }
 bdraw();
 
@@ -124,6 +95,16 @@ function gameover(){
     ctx.fillStyle = 'white'
     ctx.font = "30px Montserrat"
     ctx.fillText("Gameover", 170, 200)
+}
+
+function gg(){
+    const req = requestAnimationFrame(gg)
+    ctx.fillStyle = 'rgba(11, 41, 77, 0.06)'
+    ctx.rect(0, 0, canvas.width, canvas.height)
+    ctx.fill()
+    ctx.fillStyle = 'white'
+    ctx.font = "30px Montserrat"
+    ctx.fillText("GG", 200, 200)
 }
 
 //acord

@@ -5,39 +5,41 @@
 }
 body{
     background: #00FFAB;
+    font-family: "Montserrat";
+    display: flex;
+    justify-content: space-around;
 }
 @font-face {
     font-family: 'Montserrat';
     src: url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400&display=swap');
 }
-.game{
-    position: absolute;
+
+.box{
+    position: relative;
     top: 80px;
-    left: 37%;
-    margin: auto;
+    height: 720px;
+    width: 480px;
+}
+
+.game{
     background: #122e4e;
     border-radius: 20px;
     border: 9px solid white;
-    height: 720px;
-    width: 480px;
 }
 .border{
     position: absolute;
-    top: 80px;
-    left: 37%;
-    z-index: 2;
-    margin: auto;
     border-radius: 20px;
     background: #122e4e00;
     border: 9px solid white;
-    height: 720px;
-    width: 480px;
 }
-.btnstart{
-    border: solid 1px white;
-    width: 150px;
-    height: 70px;
-    font-family: 'Montserrat';
-    font-size: 28px;
-    margin-left: 250px;
+
+.list ol{
+    padding: 50px;
+
 }
+
+@media only screen and (max-width: 900px) {
+    body {
+      flex-direction: column;
+    }
+  }
