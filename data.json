@@ -1,0 +1,42 @@
+[
+    {
+      "speed": 1.35,
+      "color": "none"
+    },
+    {
+        "speed": 1.35,
+        "color": "none"
+    },
+    {
+        "speed": 1.5,
+        "color": "blur(1.7px)"
+    },
+    {
+          "speed": 1.5,
+          "color": "drop-shadow(6px 6px 20px red) invert(75%)"
+    },
+    {
+        "speed": 1.65,
+        "color": "none"
+    },
+    {
+          "speed": 1.65,
+          "color": "brightness(30%)"
+    },
+    {
+          "speed": 1.8,
+          "color": "none"
+    },
+    {
+            "speed": 1.8,
+            "color": "invert(100%)"
+    },
+    {
+        "speed": 1.8,
+        "color": "none"
+    },
+    {
+        "speed": 1.8,
+        "color": "none"
+    }
+]

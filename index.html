@@ -2,7 +2,6 @@
 <html lang="en">
   <head>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400&display=swap" rel="stylesheet"/>
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="CSS/styles.css" type="text/css" />
@@ -10,23 +9,41 @@
   </head>
 
   <body>
-    <div class="costubedzie box"></div>
+    <div class="score">
+      <h1>Your Score</h1>
+      <span id="score">0</span>
+    </div>
 
     <main>
-      <div class="border box"></div>
+      <div class="border box">
+        <div class="gg" style="display: none;">
+          <h1>Your Nickname</h1>
+          <input id="nickname">
+          <button onclick="addscore()">ADD</button>
+        </div>
+
+        <div class="gameover" style="display: none;">
+          <h1>GAME OVER</h1>
+          <button class="startbtn" onclick="start()">RESTART</button>
+        </div>
+        <div class="start">
+          <button class="startbtn" onclick="start()">START</button>
+        </div>
+        <div class="nstage">
+          <h1></h1>
+          <div class="progress">
+            <div class="progress-value"></div>
+          </div>
+        </div>
+      </div>
       <div class="game box">
         <canvas width="480" height="720"></canvas>
       </div>
     </main>
     
     <div class="list box">
-      <h1>Best Score</h1>
-      <ol>
-        <li>s</li>
-        <li>s</li>
-        <li>s</li>
-        <li>s</li>
-      </ol>
+      <h1>Leaderboard</h1>
+      <ul></ul>
     </div>
   </body>
   <script src="app.js"></script>
