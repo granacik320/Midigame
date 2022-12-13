@@ -5,6 +5,7 @@ let score = 0;
 let acords = [];
 let particles = [];
 let Rgama = ["C", "D", "E", "G", "A", "H"];
+let cRgama = ["C", "D", "E", "G", "A", "H"];
 let json =[];
 let speed = 1.2;
 let stage = 0;
@@ -56,6 +57,9 @@ function clickaction(whenPressKey){
             document.getElementById("score").innerText = score;
             acords.splice(i,1);
             break;
+        }else if(!cRgama.includes(nuts)){
+            gameover();
+            return;
         }
     }
 }
@@ -83,7 +87,6 @@ function bdraw(){
             gameover()
         }
     }
-    console.log(stage)
     if(acords.length === 0){
         cancelAnimationFrame(req)
         stage+=1;
